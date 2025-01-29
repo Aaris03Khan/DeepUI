@@ -35,7 +35,7 @@ export default function Home() {
     if (!input.trim()) return;
 
     setIsLoading(true);
-    setMessages(prev => [...prev, { text: input, sender: 'user' }]);
+    setMessages(prev => [...prev, { text: input, sender: 'user', think: '' }]);
     setInput('');
 
     abortControllerRef.current = new AbortController();
@@ -49,14 +49,8 @@ export default function Home() {
       const cleanedResponse = response.data.message;
       const thinkContent = (response.data.think || '').trim();
 
-      if (thinkContent) {
-        setMessages(prev => [...prev, { 
-          text: thinkContent, 
-          sender: 'think'
-        }]);
-      }
-
       setMessages(prev => [...prev, {
+        think: thinkContent,
         text: cleanedResponse,
         sender: 'ai',
         tokens: {
@@ -68,10 +62,10 @@ export default function Home() {
 
     } catch (error) {
       if (axios.isCancel(error)) {
-        setMessages(prev => [...prev, { text: 'Request cancelled.', sender: 'ai' }]);
+        setMessages(prev => [...prev, { text: 'Request cancelled.', sender: 'ai', think: '' }]);
       } else {
         console.error('Error:', error);
-        setMessages(prev => [...prev, { text: 'Failed to generate response.', sender: 'ai' }]);
+        setMessages(prev => [...prev, { text: 'Failed to generate response.', sender: 'ai', think: '' }]);
       }
     } finally {
       setIsLoading(false);
@@ -100,21 +94,11 @@ export default function Home() {
               </div>
             );
           }
-          
-          if (message.sender === 'think') {
-            return (
-              <div key={index} className="flex justify-start">
-                <blockquote className="max-w-[70%] p-4 border-l-4 border-gray-500 italic text-gray-400">
-                  <TypewriterText text={message.text} speed={50} />
-                </blockquote>
-              </div>
-            );
-          }
 
           return (
             <div key={index} className="flex justify-start">
-              <div className="max-w-[70%] p-4 prose text-gray-300">
-                <TypewriterText text={message.text} speed={50} />
+                <div className="`max-w-[70%] p-4 prose ${isDarkMode ? 'text-gray-300' : 'text-gray-800'}`">
+                <TypewriterText text={message.text} think={message.think} isDarkMode={isDarkMode}/>
                 {message.tokens && (
                   <div className="mt-2 text-xs text-gray-500">
                     <span className="mr-3">Prompt tokens: {message.tokens.prompt}</span>
