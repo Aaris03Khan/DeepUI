@@ -1,11 +1,10 @@
 # DeepUI
 
-<p align="center" style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+<p align="center" style="display: flex; align-items: center; justify-content: center; gap: 20px; font-size: 2em;">
   <img src="https://cdn-uploads.huggingface.co/production/uploads/6797cadeb825d5b94ea8bacb/ZZWmmroc9BCvlhmxPSciH.png" alt="DeepSeek Logo" height="100">
-  <span style="font-size: 2em;">+</span>
+  <span style="line-height: 1;">+</span>
   <img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/ollama.png" alt="Ollama Logo" height="100">
 </p>
-
 
 DeepUI is a modern user interface designed for Deepseek R1, optimized for Ollama and tailored for local AI interactions. Built with Next.js, it offers a privacy-focused, offline-capable interface with system monitoring capabilities.
 
