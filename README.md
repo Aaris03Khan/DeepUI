@@ -57,13 +57,11 @@ npm run dev
 
 ## Future Enhancements 💡
 
-- Chat history persistence (optional)
 - Multi-model support
 - File attachment capabilities
 - Keyboard shortcuts
 - Export chat functionality
 - Advanced prompt templates
-- Local document Q&A integration
 
 ## Contributing 🤝
 
