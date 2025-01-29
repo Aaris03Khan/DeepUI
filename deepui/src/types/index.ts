@@ -1,7 +1,8 @@
 // types.ts
 export interface Message {
   text: string;
-  sender: 'user' | 'ai' | 'think';
+  think: string;
+  sender: 'user' | 'ai';
   tokens?: {
     prompt: number;
     response: number;
